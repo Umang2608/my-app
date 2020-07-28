@@ -17,18 +17,18 @@ def readProperties()
 }
 
 def FAILED_STAGE
-//podTemplate(cloud:'openshift' , label: 'docker',
-//    containers: [
- //       containerTemplate(
-   //         name: 'jnlp',
-    //        image: 'shubhamasati/donotcopy:jenkinsslave',
-     //       alwaysPullImage: True,
-      //      privileged: True,
-        //    envVars: [envVar(key:'http_proxy',value:''),envVar(key:'https_proxy',value:'')],
-        //    args: '${computer.jnlpmac} ${computer.name}',
-        //    ttyEnabled: True
-//         )
-   // ],volumes : [hostPathVolume(hostPath:'/var/run/docker.sock', mountPath:'/var/run/docker.sock'),hostPathVolume( hostPath:'/etc/docker/daemon.json', mountPath:'/etc/docker/daemon.json' )])
+podTemplate(cloud:'openshift' , label: 'docker',
+    containers: [
+        containerTemplate(
+            name: 'jnlp',
+            image: 'shubhamasati/donotcopy:jenkinsslave',
+            alwaysPullImage: true,
+            privileged: true,
+            envVars: [envVar(key:'http_proxy',value:''),envVar(key:'https_proxy',value:'')],
+            args: '${computer.jnlpmac} ${computer.name}',
+           ttyEnabled: true
+         )
+    ],volumes : [hostPathVolume(hostPath:'/var/run/docker.sock', mountPath:'/var/run/docker.sock'),hostPathVolume( hostPath:'/etc/docker/daemon.json', mountPath:'/etc/docker/daemon.json' )])
 
 node
 {
