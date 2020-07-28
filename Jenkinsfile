@@ -29,6 +29,7 @@ node
     stage('Initial setup')
     {
         sh 'mvn clean'
+            sh 'mvn compile'
     }
     if (env.UNIT_TESTING == 'True')
     {
@@ -41,7 +42,7 @@ node
     {
         stage('Code Quality')
         {
-            echo 'quality test'
+            sh 'mvn sonar:sonar'
         }
     }
     if (env.CODE_COVERAGE == 'True')
@@ -58,11 +59,24 @@ node
             echo 'security'
         }
     }
-    if (env.SONAR_TESTING == 'True')
+    stage ('Build and tag image for Dev')
     {
-        stage('sonar testing')
+        sh 'mvn war:war'
+        node ('docker')
+    {
+        container('jnlp')
         {
-            sh 'mvn ssonar:sonar'
+            checkout([$class: 'GitSCM', branches: [[name: "*/${BRANCH}"]], doGenerateSubmoduleConfigurations: false, extensions:[], submoduleCfg: [], userRemoteConfigs: [[url: "${GIT_SOURCE_URL}"]]])
+
+        sh "docker login ${DOCKER_REGISTRY} -u $umang2608 -p $Umang@2608"
+        sh "docker build -t ${MS_NAME}:latest ."
+        sh 'docker tag ${MS_NAME}:latest ${DOCKER_REGISTRY}/$DOCKER_REPO}/$MS_NAME:$APP_NAME'
+                sh 'docker push ${DOCKER_REGISTRY}/$DOCKER_REPO}/$MS_NAME:$APP_NAME'
+                sh 'docker rmi -f ${DOCKER_REGISTRY}/$DOCKER_REPO}/$MS_NAME:$APP_NAME'
+                sh 'docker rmi -f ${MS_NAME}:latest'
+                
+        }    
+    
         }
     }
 }
