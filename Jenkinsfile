@@ -15,7 +15,7 @@ def readProperties()
 }
 
 def FAILED_STAGE
-podTemplate(cloud:'openshift' , label 'docker',
+podTemplate(cloud:'openshift' , label: 'docker',
     containers: [
         containerTemplate(
             name: 'jnlp',
