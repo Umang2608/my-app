@@ -42,7 +42,7 @@ node
     {
         stage('Code Quality')
         {
-            sh 'mvn sonar:sonar'
+            echo 'mvn sonar:sonar'
         }
     }
     if (env.CODE_COVERAGE == 'True')
