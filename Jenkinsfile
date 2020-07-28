@@ -1,52 +1,69 @@
 
-node {
-   // This is to demo github action	
-   def sonarUrl = 'sonar.host.url=http://172.31.30.136:9000'
-   def mvn = tool (name: 'maven3', type: 'maven') + '/bin/mvn'
-   stage('SCM Checkout'){
-    // Clone repo
-	git branch: 'master', 
-	credentialsId: 'github', 
-	url: 'https://github.com/javahometech/myweb'
-   
-   }
-   
-   stage('Sonar Publish'){
-	   withCredentials([string(credentialsId: 'sonarqube', variable: 'sonarToken')]) {
-        def sonarToken = "sonar.login=${sonarToken}"
-        sh "${mvn} sonar:sonar -D${sonarUrl}  -D${sonarToken}"
-	 }
-      
-   }
-   
-	
-   stage('Mvn Package'){
-	   // Build using maven
-	   
-	   sh "${mvn} clean package deploy"
-   }
-   
-   stage('deploy-dev'){
-       def tomcatDevIp = '172.31.28.172'
-	   def tomcatHome = '/opt/tomcat8/'
-	   def webApps = tomcatHome+'webapps/'
-	   def tomcatStart = "${tomcatHome}bin/startup.sh"
-	   def tomcatStop = "${tomcatHome}bin/shutdown.sh"
-	   
-	   sshagent (credentials: ['tomcat-dev']) {
-	      sh "scp -o StrictHostKeyChecking=no target/myweb*.war ec2-user@${tomcatDevIp}:${webApps}myweb.war"
-          sh "ssh ec2-user@${tomcatDevIp} ${tomcatStop}"
-		  sh "ssh ec2-user@${tomcatDevIp} ${tomcatStart}"
-       }
-   }
-   stage('Email Notification'){
-		mail bcc: '', body: """Hi Team, You build successfully deployed
-		                       Job URL : ${env.JOB_URL}
-							   Job Name: ${env.JOB_NAME}
+def readProperties()
+{
+        def properties_file_path = "${workspace}" + "@script/properties.yml"
+        def property = readYaml file: properties_file_path
+        env.APP_NAME = property.APP_NAME
+        env.MS_NAME = property.MS_NAME
+        env.BRANCH = property.BRANCH
+        env.GIT_SOURCE_URL = property.GIT_SOURCE_URL
+        env.SONAR_HOST_URL = property.SONAR_HOST_URL
+        env.CODE_QUALITY = property.CODE_QUALITY
+        env.UNIT_TESTING = property.UNIT_TESTING
+        env.CODE_COVERAGE = property.CODE_COVERAGE
 
-Thanks,
-DevOps Team""", cc: '', from: '', replyTo: '', subject: "${env.JOB_NAME} Success", to: 'hari.kammana@gmail.com'
-   
-   }
+}
+
+def FAILED_STAGE
+node
+{
+    def MAVEN_HOME = tool "MY_MAVEN"
+    def JAVA_HOME = tool "MY_JDK"
+    env.PATH= "${env.PATH}:${MAVEN_HOME}/bin:${JAVA_HOME}/bin"
+    
+    stage('Checkout')
+    {
+        readProperties()
+        checkout([$class: 'GitSCM', branches: [[name: "*/${BRANCH}"]], doGenerateSubmoduleConfigurations: false, extensions:[], submoduleCfg: [], userRemoteConfigs: [[url: "${GIT_SOURCE_URL}"]]])
+    }
+    stage('Initial setup')
+    {
+        sh 'mvn clean'
+    }
+    if (env.UNIT_TESTING == 'True')
+    {
+        stage('Unit testing')
+        {
+            sh 'mvn test'
+        }
+    }
+    if (env.CODE_QUALITY == 'True')
+    {
+        stage('Code Quality')
+        {
+            echo 'quality test'
+        }
+    }
+    if (env.CODE_COVERAGE == 'True')
+    {
+        stage('Coverage testing')
+        {
+            sh 'mvn cobertura:cobertura'
+        }
+    }
+    if (env.SECURITY_TESTING == 'True')
+    {
+        stage('Security testing')
+        {
+            echo 'security'
+        }
+    }
+    if (env.SONAR_TESTING == 'True')
+    {
+        stage('sonar testing')
+        {
+            sh 'mvn ssonar:sonar'
+        }
+    }
 }
 
