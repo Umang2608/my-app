@@ -7,3 +7,5 @@ CODE_QUALITY: 'True'
 UNIT_TESTING: 'True'
 CODE_COVERAGE: 'True'
 SECURITY_TETING: 'True'
+DOCKER_REGISTRY: 'blrocpimpregistry:5000
+DOCKER_REPO: 'imptest'
