@@ -27,7 +27,7 @@ def FAILED_STAGE
         //    envVars: [envVar(key:'http_proxy',value:''),envVar(key:'https_proxy',value:'')],
         //    args: '${computer.jnlpmac} ${computer.name}',
         //    ttyEnabled: True
-         )
+//         )
    // ],volumes : [hostPathVolume(hostPath:'/var/run/docker.sock', mountPath:'/var/run/docker.sock'),hostPathVolume( hostPath:'/etc/docker/daemon.json', mountPath:'/etc/docker/daemon.json' )])
 
 node
