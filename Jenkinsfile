@@ -11,6 +11,8 @@ def readProperties()
         env.CODE_QUALITY = property.CODE_QUALITY
         env.UNIT_TESTING = property.UNIT_TESTING
         env.CODE_COVERAGE = property.CODE_COVERAGE
+        env.DOCKER_REGISTRY= property.DOCKER_REGISTRY
+        env.DOCKER_REPO= property.DOCKER_REPO
 
 }
 
@@ -26,7 +28,7 @@ podTemplate(cloud:'openshift' , label: 'docker',
             args: '${computer.jnlpmac} ${computer.name}',
             ttyEnabled: True
         )
-    ],volumes : [hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock'),hostPathVolume( hostPath: '/etc/docker/daemon.json', mountPath: '/etc/docker/daemon.json' )])
+    ],volumes : [hostPathVolume(hostPath:'/var/run/docker.sock', mountPath:'/var/run/docker.sock'),hostPathVolume( hostPath:'/etc/docker/daemon.json', mountPath:'/etc/docker/daemon.json' )])
 
 node
 {
