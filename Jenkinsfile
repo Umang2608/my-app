@@ -84,9 +84,9 @@ node
 
         sh "docker login ${DOCKER_REGISTRY} -u $umang2608 -p $Umang@2608"
         sh "docker build -t ${MS_NAME}:latest ."
-        sh 'docker tag ${MS_NAME}:latest ${DOCKER_REGISTRY}/$DOCKER_REPO}/$MS_NAME:$APP_NAME'
-                sh 'docker push ${DOCKER_REGISTRY}/$DOCKER_REPO}/$MS_NAME:$APP_NAME'
-                sh 'docker rmi -f ${DOCKER_REGISTRY}/$DOCKER_REPO}/$MS_NAME:$APP_NAME'
+                sh 'docker tag ${MS_NAME}:latest ${DOCKER_REGISTRY}/${DOCKER_REPO}/$MS_NAME:$APP_NAME'
+                sh 'docker push ${DOCKER_REGISTRY}/${DOCKER_REPO}/$MS_NAME:$APP_NAME'
+                sh 'docker rmi -f ${DOCKER_REGISTRY}/${DOCKER_REPO}/$MS_NAME:$APP_NAME'
                 sh 'docker rmi -f ${MS_NAME}:latest'
                 
         }    
