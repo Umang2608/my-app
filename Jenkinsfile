@@ -76,7 +76,7 @@ node
     stage ('Build and tag image for Dev')
     {
         sh 'mvn war:war'
-        node ('docker')
+       node ('docker')
     {
         container('jnlp')
         {
