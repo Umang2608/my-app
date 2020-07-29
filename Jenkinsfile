@@ -23,7 +23,7 @@ podTemplate(cloud:'openshift' , label: 'docker',
             name: 'jnlp',
             image: 'shubhamasati/donotcopy:jenkinsslave',
             alwaysPullImage: true,
-            privileged: true,
+            
             envVars: [envVar(key:'http_proxy',value:''),envVar(key:'https_proxy',value:'')],
             args: '${computer.jnlpmac} ${computer.name}',
            ttyEnabled: true
