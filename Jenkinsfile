@@ -66,32 +66,11 @@ node
             sh 'mvn cobertura:cobertura'
         }
     }
-    if (env.SECURITY_TESTING == 'True')
-    {
-        stage('Security testing')
-        {
-            echo 'security'
-        }
-    }
+    
     stage ('Build and tag image for Dev')
     {
         sh 'mvn war:war'
-       node ('docker')
-    {
-        container('jnlp')
-        {
-            checkout([$class: 'GitSCM', branches: [[name: "*/${BRANCH}"]], doGenerateSubmoduleConfigurations: false, extensions:[], submoduleCfg: [], userRemoteConfigs: [[url: "${GIT_SOURCE_URL}"]]])
-
-        sh "docker login ${DOCKER_REGISTRY} -u $umang2608 -p $Umang@2608"
-        sh "docker build -t ${MS_NAME}:latest ."
-                sh 'docker tag ${MS_NAME}:latest ${DOCKER_REGISTRY}/${DOCKER_REPO}/$MS_NAME:$APP_NAME'
-                sh 'docker push ${DOCKER_REGISTRY}/${DOCKER_REPO}/$MS_NAME:$APP_NAME'
-                sh 'docker rmi -f ${DOCKER_REGISTRY}/${DOCKER_REPO}/$MS_NAME:$APP_NAME'
-                sh 'docker rmi -f ${MS_NAME}:latest'
-                
-        }    
-    
-        }
+       
     }
 }
 
