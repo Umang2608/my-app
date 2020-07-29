@@ -56,7 +56,7 @@ node
     {
         stage('Code Quality')
         {
-            sh 'mvn sonar:sonar'
+                sh 'mvn sonar:sonar -Dsonar.host.url=${SONAR_HOST_URL}'
         }
     }
     if (env.CODE_COVERAGE == 'True')
