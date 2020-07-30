@@ -33,6 +33,12 @@
 			<version>3.2</version>
 				
 		</dependency>
+		<dependency>
+			<groupId>com.lazerycode.jmeter</groupId>
+    			<artifactId>jmeter-maven-plugin</artifactId>
+    			<version>DEV-SNAPSHOT</version>
+    			<packaging>maven-plugin</packaging>
+		</dependency>
 	
 	</dependencies>
 	<distributionManagement>
