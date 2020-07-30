@@ -74,7 +74,7 @@ node
     }
     stage ('Run Jmeter test')
     {
-        bat 'jmeter.bat'
+        sh 'jmeter.bat'
             
     }
           
