@@ -74,7 +74,7 @@ node
     }
     stage ('Run Jmeter test')
     {
-        curl 'jmeter.sh'
+        sh 'mvn jmeter:configure jmeter:gui'
             
     }
           
