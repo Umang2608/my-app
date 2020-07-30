@@ -70,10 +70,12 @@ node
     stage ('Build and tag image for Dev')
     {
         sh 'mvn war:war'
+            stash name :'war' include 'x.war'
        
     }
     stage ('Run Jmeter test')
     {
+        unstash : 'war'    
         sh 'mvn jmeter:configure jmeter:gui'
             
     }
