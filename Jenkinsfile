@@ -73,9 +73,10 @@ node
             stash name :'war' include 'x.war'
        
     }
+    unstash : 'war'
     stage ('Run Jmeter test')
     {
-        unstash : 'war'    
+            
         sh 'mvn jmeter:configure jmeter:gui'
             
     }
