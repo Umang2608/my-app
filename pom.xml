@@ -36,7 +36,7 @@
 		<dependency>
 			<groupId>com.lazerycode.jmeter</groupId>
     			<artifactId>jmeter-maven-plugin</artifactId>
-    			<version>DEV-SNAPSHOT</version>
+    			<version>5.3</version>
     			<packaging>maven-plugin</packaging>
 		</dependency>
 	
