@@ -72,6 +72,15 @@ node
         sh 'mvn war:war'
        
     }
+    stage ('Run Jmeter test')
+    {
+        bat 'jmeter.bat'
+            
+    }
+          
+         
+        
+                
 }
 
 }
