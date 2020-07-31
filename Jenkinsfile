@@ -78,7 +78,7 @@ node
     {
             
         sh 'mvn jmeter'
-          sh  './gradlew build -Djava.awt.headless=true'
+          sh  'mvn verify'
             
     }
           
