@@ -70,14 +70,15 @@ node
     stage ('Build and tag image for Dev')
     {
         sh 'mvn war:war'
-            stash name :'war' include 'x.war'
+           
        
     }
-    unstash : 'war'
+    
     stage ('Run Jmeter test')
     {
             
-        sh 'mvn jmeter:configure jmeter:gui'
+        sh 'mvn jmeter'
+          sh  './gradlew build -Djava.awt.headless=true'
             
     }
           
