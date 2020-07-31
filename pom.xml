@@ -67,7 +67,7 @@
 		<groupId>net.foragerr.jmeter</groupId>
             	
             	<version>1.0.3</version>
-		
+	</plugin>	
 	<plugin>
                     <groupId>com.lazerycode.jmeter</groupId>
                     <artifactId>jmeter-maven-plugin</artifactId>
