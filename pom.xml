@@ -90,8 +90,8 @@
                             <id>jmeter-check-results</id>
                             <goals>
                                 <goal>results</goal>
-                            </goals>
-			    <goals>
+                           
+			    
 				    <goal>
 					    <id>dataset-sanity1</id>
 							<properties>
@@ -102,7 +102,7 @@
 							<fisheye.config>${dataset.location}/config.xml</fisheye.config>
 							</properties>
 				     </goal>
-			     </goals>
+			      </goals>
 					    
                         </execution>
                     </executions>
