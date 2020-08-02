@@ -33,6 +33,12 @@
 			<version>3.2</version>
 				
 		</dependency>
+		<dependency>
+			<groupId>com.atlassian.performance.fisheye</groupId>
+			<artifactId>performance-test</artifactId>
+			<type>zip</type>
+			<version>${project.version}</version>
+		</dependency>
 		
 	</dependencies>
 	<distributionManagement>
@@ -92,17 +98,8 @@
                                 <goal>results</goal>
                            
 			    
-				    <goal>
-					    <id>dataset-sanity1</id>
-							<properties>
-							<repository.zipfile>${performance.datadir}/sanity1.zip</repository.zipfile>
-							<repository.location>${repository.basedir}/sanity1</repository.location>
-							<dataset.location>${dataset.basedir}/dataset-sanity1</dataset.location>
-							<dataset.version>sanity1</dataset.version>
-							<fisheye.config>${dataset.location}/config.xml</fisheye.config>
-							</properties>
-				     </goal>
-			      </goals>
+				    
+			    </goals>
 					    
                         </execution>
                     </executions>
@@ -114,6 +111,15 @@
 			
 			
 			<version>2.0-SNAPSHOT</version>
+		</plugin>
+	        <plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>chronos-maven-plugin</artifactId>
+			<version>1.0</version>
+			<configuration>
+			<jmeterhome>${jmeter.home}</jmeterhome>
+			<historydir>${history.directory}</historydir>
+			<heap>756m</heap>
 		</plugin>
     </plugins>
 	
