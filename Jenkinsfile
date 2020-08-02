@@ -77,7 +77,7 @@ node
     stage ('Run Jmeter test')
     {
             
-        sh 'mvn install'
+        sh 'mvn jmeter:jmeter -Dperformancetest.threadCount=2'
           
             
     }
