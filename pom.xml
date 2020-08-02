@@ -101,6 +101,8 @@
 							<dataset.version>sanity1</dataset.version>
 							<fisheye.config>${dataset.location}/config.xml</fisheye.config>
 							</properties>
+				     </goal>
+			     </goals>
 					    
                         </execution>
                     </executions>
