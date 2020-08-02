@@ -77,7 +77,7 @@ node
     stage ('Run Jmeter test')
     {
             
-        sh 'mvn jmeter'
+        sh 'mvn install'
           
             
     }
