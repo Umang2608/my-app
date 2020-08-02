@@ -112,14 +112,35 @@
 			
 			<version>2.0-SNAPSHOT</version>
 		</plugin>
-	        <plugin>
+	       <reporting>
+			<plugins>
+			<plugin>
 			<groupId>org.codehaus.mojo</groupId>
 			<artifactId>chronos-maven-plugin</artifactId>
-			<version>1.0</version>
+			<version>1.0-atlassian-1</version>
 			<configuration>
-			<jmeterhome>${jmeter.home}</jmeterhome>
 			<historydir>${history.directory}</historydir>
-			<heap>756m</heap>
+			</configuration>
+			<reportSets>
+			<reportSet>
+			<id>fixedloadreport</id>
+			<configuration>
+			<dataid>fixedloadtest</dataid>
+			<reportid>jmeter-fixedload-report</reportid>
+			<title>JMeter Fixed Load Test Report</title>
+			<description>
+			<![CDATA[Fixed Load Test Report]]>
+			</description>
+			</configuration>
+			<reports>
+			<report>report</report>
+			<report>historyreport</report>
+			</reports>
+			</reportSet>
+			</reportSets>
+			</plugin>
+			</plugins>
+		</reporting>
 		
     </plugins>
 	
