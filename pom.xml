@@ -68,6 +68,8 @@
                     <groupId>com.lazerycode.jmeter</groupId>
                     <artifactId>jmeter-maven-plugin</artifactId>
                     <version>2.8.5</version>
+		    <profile>
+		    
 		    <configuration>
 			    
 			 <errorRateThresholdInPercent>1</errorRateThresholdInPercent>
@@ -89,6 +91,17 @@
                             <goals>
                                 <goal>results</goal>
                             </goals>
+			    <goals>
+				    <goal>
+					    <id>dataset-sanity1</id>
+							<properties>
+							<repository.zipfile>${performance.datadir}/sanity1.zip</repository.zipfile>
+							<repository.location>${repository.basedir}/sanity1</repository.location>
+							<dataset.location>${dataset.basedir}/dataset-sanity1</dataset.location>
+							<dataset.version>sanity1</dataset.version>
+							<fisheye.config>${dataset.location}/config.xml</fisheye.config>
+							</properties>
+					    
                         </execution>
                     </executions>
 		
@@ -101,6 +114,7 @@
 			<version>2.0-SNAPSHOT</version>
 		</plugin>
     </plugins>
+	</profile>
 </build>
 
 
