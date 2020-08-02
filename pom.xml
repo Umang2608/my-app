@@ -120,7 +120,7 @@
 			<jmeterhome>${jmeter.home}</jmeterhome>
 			<historydir>${history.directory}</historydir>
 			<heap>756m</heap>
-		</plugin>
+		
     </plugins>
 	
 </build>
