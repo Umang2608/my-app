@@ -80,6 +80,7 @@
 				     </regex>
 				</regexes>
 			    </check>
+			
 		</configuration>
         </plugin>
 	<plugin>
