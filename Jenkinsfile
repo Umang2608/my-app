@@ -63,7 +63,7 @@ node
     {
         stage('Coverage testing')
         {
-            sh 'mvn cobertura:cobertura'
+            sh 'mvn cobertura:cobertura -Dcobertura.report.format=xml'
         }
     }
     
