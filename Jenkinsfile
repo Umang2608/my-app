@@ -81,7 +81,7 @@ node
         sh 'mvn jmeter:jmeter -Dperformancetest.threadCount=2'
            
                
-                perfpublisher name: '*.xml', threshold: '0', unstableThreshold: '0', healthy: '', unhealthy: '', metrics: '', parseAllMetrics: false
+                perfpublisher name: '*.html', threshold: '0', unstableThreshold: '0', healthy: '', unhealthy: '', metrics: '', parseAllMetrics: false
             
         }
           
