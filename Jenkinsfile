@@ -79,10 +79,10 @@ node
     {
             
         sh 'mvn jmeter:jmeter -Dperformancetest.threadCount=2'
-            steps {
+           
                
                 perfpublisher name: '*.xml', threshold: '0', unstableThreshold: '0', healthy: '', unhealthy: '', metrics: '', parseAllMetrics: false
-            }
+            
         }
           
           
