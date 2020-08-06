@@ -80,13 +80,8 @@ node
             
         sh 'mvn jmeter:jmeter -Dperformancetest.threadCount=2'
             steps {
-                writeFile file: 'result.xml', text: '''
-<report categ="Automated test" name="Exhibit A">
-<test executed="yes" name="A"><result><success unstable="false" passed="no" state="0" /><errorlog>FAIL</errorlog><executiontime isRelevant="true" mesure="1.000" unit="s" /><log>BAD</log></result></test>
-<test executed="yes" name="B"><result><success unstable="false" passed="yes" state="100" /><errorlog></errorlog><executiontime isRelevant="true" mesure="1.000" unit="s" /><log>GOOD</log></result></test>
-</report>
-'''
-                perfpublisher name: 'result.xml', threshold: '0', unstableThreshold: '0', healthy: '', unhealthy: '', metrics: '', parseAllMetrics: false
+               
+                perfpublisher name: '*.xml', threshold: '0', unstableThreshold: '0', healthy: '', unhealthy: '', metrics: '', parseAllMetrics: false
             }
         }
           
