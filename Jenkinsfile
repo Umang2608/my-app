@@ -64,7 +64,7 @@ node
         stage('Coverage testing')
         {
             sh 'mvn cobertura:cobertura -Dcobertura.report.format=xml'
-               sh 'mvn perfpublisher healthy: '4', metrics: '', name: '*.xml', parseAllMetrics: true, threshold: '', unhealthy: '8', unstableThreshold: '''
+               
         }
     }
     
@@ -79,6 +79,7 @@ node
     {
             
         sh 'mvn jmeter:jmeter -Dperformancetest.threadCount=2'
+            perfpublisher healthy: '4', metrics: '', name: '*.xml', parseAllMetrics: true, threshold: '', unhealthy: '8', unstableThreshold: ''
           
           
             
