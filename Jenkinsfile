@@ -64,6 +64,7 @@ node
         stage('Coverage testing')
         {
             sh 'mvn cobertura:cobertura -Dcobertura.report.format=xml'
+                perfpublisher healthy: '4', metrics: '', name: '*.xml', parseAllMetrics: true, threshold: '', unhealthy: '8', unstableThreshold: ''
         }
     }
     
