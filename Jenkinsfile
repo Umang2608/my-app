@@ -81,7 +81,7 @@ node
         sh 'mvn jmeter:jmeter -Dperformancetest.threadCount=2'
            
                
-                perfpublisher healthy: '', metrics: '', name: '/var/lib/jenkins/jobs/pij/worspace/target/jmeter/reports/test/*.html', parseAllMetrics: false, threshold: '', unhealthy: '', unstableThreshold: ''
+                perfpublisher healthy: '', metrics: '', name: '*.html', parseAllMetrics: false, threshold: '', unhealthy: '', unstableThreshold: ''
             
         }
           
