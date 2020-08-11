@@ -78,7 +78,7 @@ node
     stage ('Run Jmeter test')
     {
             
-        sh 'mvn jmeter:configure jmeter:gui -DguiTestFile=src/test/jmeter/test.jmx'
+        sh 'mvn jmeter:configure jmeter:gui -DguiTestFile=src/test/jmeter/test.jmx verify'
            
                
                 perfpublisher healthy: '', metrics: '', name: 'test.jtl', parseAllMetrics: true, threshold: '', unhealthy: '', unstableThreshold: ''
