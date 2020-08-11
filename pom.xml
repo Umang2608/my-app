@@ -121,7 +121,23 @@
 			    </goals>                
 			  </execution>            
 			</executions>            
-		</plugin>        
+		</plugin> 
+	        <plugin>
+				<groupId>de.codecentric</groupId>
+				<artifactId>jmeter-graph-maven-plugin</artifactId>
+				<version>0.1.0</version>
+				<configuration>
+			<inputFile>${project.build.directory}/jmeter/results/test.jtl</inputFile>	
+				  <graphs>
+				    <graph>
+				      <pluginType>ResponseTimesOverTime</pluginType>
+				      <width>800</width>
+				      <height>600</height>
+				      <outputFile>${project.build.directory}/jmeter/results/BlazeDemo Request.png</outputFile>
+				    </graph>
+				  </graphs>
+				</configuration>
+		</plugin>
 	    	<plugin>
 			<groupId>com.atlassian.performance.fisheye</groupId>
 			<artifactId>performance-test</artifactId>
