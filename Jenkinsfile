@@ -78,7 +78,7 @@ node
     stage ('Run Jmeter test')
     {
             
-        sh 'mvn jmeter-graph:create-graph'
+        sh 'mvn verify jmeter-graph:create-graph'
            
                
                 perfpublisher healthy: '', metrics: '', name: '*.html', parseAllMetrics: false, threshold: '', unhealthy: '', unstableThreshold: ''
