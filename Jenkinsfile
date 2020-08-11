@@ -78,7 +78,7 @@ node
     stage ('Run Jmeter test')
     {
             
-        sh 'mvn jmeter:jmeter -Dperformancetest.threadCount=2'
+        sh 'mvn verify'
            
                
                 perfpublisher healthy: '', metrics: '', name: '*.html', parseAllMetrics: false, threshold: '', unhealthy: '', unstableThreshold: ''
